@@ -66,6 +66,7 @@ and the resulting [ .csv ] will be named according to the standard of `DD-MMM-YY
 
 `domains.txt` should have the domains that you'd like to find in the results - one domain per line.
   don't add `http://` or `/path/to/a/page`, either - just use something like: 
-  + `google.com`
-  + `yahoo.de`
-  + `youtu.be`
+
++ `google.com`
++ `yahoo.de`
++ `youtu.be`
