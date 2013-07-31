@@ -53,19 +53,19 @@ This will further assume that you just want the default settings.
 
 Expected to be found in the same directory:
 
-+ keywords.txt
-+ domains.txt
-+ useragents.txt
++ `keywords.txt`
++ `domains.txt`
++ `useragents.txt`
 
 and the resulting [ .csv ] will be named according to the standard of `DD-MMM-YYYY_results.csv`.
 
 ### Files expected in the same directory
 
-keywords.txt should have one 'set' of keywords you wish to search per line - what you'd enter into 
+`keywords.txt` should have one 'set' of keywords you wish to search per line - what you'd enter into 
   the google search form before hitting 'Return' or 'Enter'.
 
-domains.txt should have the domains that you'd like to find in the results - one domain per line.
+`domains.txt` should have the domains that you'd like to find in the results - one domain per line.
   don't add `http://` or `/path/to/a/page`, either - just use something like: 
-  + 'google.com'
-  + 'yahoo.de'
-  + 'youtu.be'
+  + `google.com`
+  + `yahoo.de`
+  + `youtu.be`
