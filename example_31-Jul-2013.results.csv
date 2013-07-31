@@ -1,0 +1,5 @@
+sep=,
+Keyword,First Occurrence,Domain,Second Occurrence,Domain,Third Occurrence,Domain
+cats are cute,3,youtube.com,4,youtube.com,68,reddit.com
+dogs are great,34,youtube.com
+tapirs are weird,7,youtube.com,11,reddit.com
