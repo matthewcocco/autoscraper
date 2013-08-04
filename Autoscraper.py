@@ -5,6 +5,7 @@ from random import random, choice
 from datetime import datetime
 import lxml.html as lh
 import csv
+import ConfigParser
 
 import lxml._elementpath as DONTUSE  # workaround for Modulefinder when compiling Windows binaries.
 
@@ -44,11 +45,15 @@ class Autoscraper():
                                # replaced during init with
                                # a random useragent.
 
+    config = {'engine': 'google.com',  # default config
+              'delay': 25}             # to be updated during init
+
     # default filenames
 
     useragents_filename = 'useragents.txt'
     domains_filename = 'domains.txt'
     keywords_filename = 'keywords.txt'
+    config_filename = 'config.ini'
     csv_filename = datetime.now().strftime('%d-%b-%Y') + ".results.csv"
 
     # begin functions
@@ -67,6 +72,15 @@ class Autoscraper():
 
         # these two lines create lists from lines in the files; the .strip() is to remove the newlines.
         # (because \n adds unnecessary newlines when writing to the csv)
+
+                                              # Uses ConfigParser to load settings from config.ini
+        parser = ConfigParser.ConfigParser()  # Creates a ConfigParser
+        parser.read(self.config_filename)     # Parses the file
+
+        # and then adds maps values to options in a dictionary, self.config
+
+        for option in parser.options("CONFIG"):
+            self.config[option] = parser.get("CONFIG", option)
 
         # if we haven't already generated a [.csv] for today, then we create one.
         # this assumes that the [.csv] will be opened in Microsoft Excel;
@@ -109,7 +123,7 @@ class Autoscraper():
 
         for keyword in self.keywords:
 
-            print("Searching for keyword " + keyword)  # print() statement is for debugging purposes;
+            print("Searching %s for keyword %s" % (self.config['engine'], keyword))  # print() statement is for debugging purposes;
 
             # url = self.construct_query(keyword)
             # response = requests.get(url, headers=headers)
@@ -206,7 +220,7 @@ class Autoscraper():
         # Then, the quote(<...>, safe='+') escapes any other strange
         # characters in the URL, save for instances of '+'.
 
-        return ('http://%s/search?q=%s&pws=0&complete=0&num=100' % ('google.com', quote(keyword.replace(' ', '+'), safe='+')))
+        return ('http://%s/search?q=%s&pws=0&complete=0&num=100' % (self.config['engine'], quote(keyword.replace(' ', '+'), safe='+')))
 
     def append_to_csv(self, result):
         '''
@@ -232,7 +246,7 @@ class Autoscraper():
 
         csv.writer(open(self.csv_filename, 'ab'), dialect='excel').writerow(row)  # write the row to the [.csv].
 
-    def pause(self, time=25):
+    def pause(self, time=config['delay']):
         '''
         Utilizes sleep and random.random() to pause execution of the program when called.
         Arbitrary pause in execution to reduce frequency of hits to google search.
