@@ -127,7 +127,7 @@ class Autoscraper():
 
             # url = self.construct_query(keyword)
             # response = requests.get(url, headers=headers)
-            # doc = lh.document_fromstring(response.text)
+            # doc = lh.document_fromstring(response.text)   # N.B.: response.text doesn't work any more; use response.content instead.
 
             # the following is splicing the above three together, which:
             # + constructs the appropriate URL to query Google for a keyword,
@@ -263,5 +263,5 @@ class Autoscraper():
         sleep(sleep_time)
         print("Done sleeping.\n")  # print() statement for debugging purposes;
 
-testbot = Autoscraper()
-testbot.execute()
+Scraper = Autoscraper()
+Scraper.execute()
