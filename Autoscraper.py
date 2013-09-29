@@ -135,7 +135,7 @@ class Autoscraper():
             # + converts the HTML response into something easy to parse.
 
             response = requests.get(self.construct_query(keyword), headers=headers)
-            doc = lh.document_fromstring(response.text)
+            doc = lh.document_fromstring(response.content)
 
             # WE SHOULD PROBABLY CHECK FOR GOOGLE GIVING US A 'SORRY' MESSAGE HERE
             # AND IF SO, WE SHOULD FLUSH COOKIES AND CHANGE USERAGENT AND WAIT A MINUTE OR THREE
