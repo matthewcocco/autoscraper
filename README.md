@@ -1,7 +1,7 @@
 # README.md for autoscraper
 
 A library for searching Google and scraping the first 100 results.
-Designed to be easy for non-programmers to use (when compiled as a windows binary)
+Designed to be easy for non-programmers to use (when compiled as a windows binary).
 
 ## TL;DR:
 
